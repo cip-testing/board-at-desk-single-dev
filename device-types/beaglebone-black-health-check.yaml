@@ -1,0 +1,75 @@
+# Simple example of how to use an inline test definition, using the beaglebone-black
+device_type: beaglebone-black
+job_name: am335x-boneblack-health
+
+# Reasonable defaults for a simple job
+timeouts:
+  job:
+    minutes: 10
+  action:
+    minutes: 5
+  connection:
+    minutes: 2
+priority: medium
+visibility: public
+
+# context allows specific values to be overridden or included
+context:
+  # tell the template which architecture is being tested
+  arch: ARMv7
+
+metadata:
+  # please change these fields when modifying this job for your own tests.
+  docs-source: beaglebone-black-health-check
+  docs-filename: beaglebone-black-health-check.yaml
+
+actions:
+- deploy:
+    timeout:
+      minutes: 5
+    to: tmpfs
+    images:
+      rootfs:
+        image_arg: -drive format=raw,file={rootfs}
+        url: http://localhost/test-images/bbb_zImage
+        compression: gz
+    os: debian
+
+- boot:
+    method: qemu
+    media: tmpfs
+    prompts: ["root@debian:"]
+    auto_login:
+      login_prompt: "login:"
+      username: root
+
+# START-INLINE-TEST-BLOCK
+- test:
+    timeout:
+      minutes: 4
+    definitions:
+    - repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: simple-smoke-test
+          description: "smoke test the kernel"
+          os:
+          - debian
+          scope:
+          - functional
+        run:
+          steps:
+          - lava-test-case test-uname-command --shell uname -a
+          - lava-test-case test-lshw-command --shell lshw
+          - lava-test-case test-lscpu-command --shell lscpu
+          - lava-test-case test-dfh-command --shell df -h
+          - lava-test-case test-lsusb-command --shell lsusb
+          - lava-test-case test-lspci-command --shell lspci
+          - lava-test-case test-ipaddr-command --shell ip addr
+          - lava-test-case test-dpkg-command --shell fdisk -l
+      # remember to use -y to allow apt to proceed without interaction
+      # -q simplifies the apt output for logging.
+      from: inline
+      name: simple-smoke-test
+      path: inline/simple-smoke-test.yaml
+# END-INLINE-TEST-BLOCK

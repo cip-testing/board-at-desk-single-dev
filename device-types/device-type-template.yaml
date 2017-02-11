@@ -1,0 +1,24 @@
+# Device Type Template (from web page)
+
+name: qemu
+architecture
+processor
+cpu mode
+aliases
+bits
+cores
+Total number of cores
+Device Type description
+Health Check job
+How often to run health checks: 24
+Initiate health checks by hours or by jobs: hours
+Display: True
+Owners Only: False
+
+
+
+
+
+
+
+
