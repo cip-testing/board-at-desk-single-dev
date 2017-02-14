@@ -1,11 +1,11 @@
-# Simple example of how to use an inline test definition, using the beaglebone-black
-device_type: beaglebone-black
-job_name: am335x-boneblack-health
+# Simple example of how to use an inline test definition, using qemu
+device_type: qemu
+job_name: Inline Test Definition example
 
 # Reasonable defaults for a simple job
 timeouts:
   job:
-    minutes: 10
+    minutes: 15
   action:
     minutes: 5
   connection:
@@ -15,13 +15,14 @@ visibility: public
 
 # context allows specific values to be overridden or included
 context:
-  # tell the template which architecture is being tested
+  # tell the qemu template which architecture is being tested
+  # the template uses that to ensure that qemu-system-x86_64 is executed.
   arch: ARMv7
 
 metadata:
   # please change these fields when modifying this job for your own tests.
-  docs-source: beaglebone-black-health-check
-  docs-filename: beaglebone-black-health-check.yaml
+  docs-source: writing-tests
+  docs-filename: inline-test-definition-example.yaml
 
 actions:
 - deploy:
@@ -31,7 +32,7 @@ actions:
     images:
       rootfs:
         image_arg: -drive format=raw,file={rootfs}
-        url: http://localhost/test-images/bbb_zImage
+        url: http://localhost:8010/cip-triceratops/v4.4.27/arm-allnoconfig/zImage
         compression: gz
     os: debian
 
@@ -51,25 +52,20 @@ actions:
     - repository:
         metadata:
           format: Lava-Test Test Definition 1.0
-          name: simple-smoke-test
-          description: "smoke test the kernel"
+          name: apache-server
+          description: "server installation"
           os:
           - debian
           scope:
           - functional
         run:
           steps:
-          - lava-test-case test-uname-command --shell uname -a
-          - lava-test-case test-lshw-command --shell lshw
-          - lava-test-case test-lscpu-command --shell lscpu
-          - lava-test-case test-dfh-command --shell df -h
-          - lava-test-case test-lsusb-command --shell lsusb
-          - lava-test-case test-lspci-command --shell lspci
-          - lava-test-case test-ipaddr-command --shell ip addr
-          - lava-test-case test-dpkg-command --shell fdisk -l
+          - apt -q update
+          - apt -q -y install apache2
+          - lava-test-case dpkg --shell dpkg -s apache2
       # remember to use -y to allow apt to proceed without interaction
       # -q simplifies the apt output for logging.
       from: inline
-      name: simple-smoke-test
-      path: inline/simple-smoke-test.yaml
+      name: apache-server
+      path: inline/apache-server.yaml
 # END-INLINE-TEST-BLOCK

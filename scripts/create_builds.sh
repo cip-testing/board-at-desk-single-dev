@@ -3,7 +3,7 @@
 # SPDX-License-Identifier:	Apache-2.0
 cd ~
 cd git-repos
-git clone https://gitlab.com/cip-project/linux-cip.git
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/bwh/linux-cip.git
 cd linux-cip
 git checkout -b cip_v4.4.27 v4.4.27
 echo "Building ARMhf cip-tyrannosaurus Tree"

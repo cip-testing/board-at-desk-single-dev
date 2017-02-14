@@ -28,12 +28,10 @@ sudo sed -ie '/#/!s/listen/# listen/g' /etc/nginx/sites-available/default
 sudo mkdir /var/www/images/kernel-ci
 sudo chown www-data:www-data /var/www/images/kernel-ci
 
-#Put this as a VirtualHost under Apache???
-cd /var/www/images/kernel-ci
-python -m SimpleHTTPServer 8010 &
-cd ~
+# Storage Server runs under Nginx per /etc/nginx/conf.d/local-storage-server.conf
+sudo cp /vagrant/scripts/local-storage-server.conf /etc/nginx/conf.d/
 
-# Start the webserver to run in the background
+# Start the KernelCI webserver to run in the background
 /vagrant/scripts/start_webserver.sh &
 
 echo "END: configure_singledev.sh"
