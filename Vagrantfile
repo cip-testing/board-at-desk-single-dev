@@ -18,7 +18,13 @@ Vagrant.configure(2) do |config|
     config.vm.box = "debian/jessie64"
     
     # Add USB Filter to connect FTDI USB-to-Serial cable to VM
-    vbox.customize ["usbfilter", "add", "0", "--manufacturer", "Prolific Technology Inc.", "--product", "USB-Serial Controller"]
+    vbox.customize ["usbfilter", "add", "0", 
+    "--target", :id, 
+    "--name", "USB_to_BBB",
+    "--manufacturer", "Prolific Technology Inc.",
+    "--product", "USB-Serial Controller",
+    "--vendorid", "067b", 
+    "--productid", "2303"]
     
     vbox.customize ["modifyvm", :id, "--memory", "8192"]
     vbox.customize ["modifyvm", :id, "--cpus", "2"]
