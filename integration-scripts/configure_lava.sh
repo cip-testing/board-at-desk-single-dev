@@ -34,8 +34,7 @@ sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device --device-type 
 # Create the Device Dictionary file for the Beaglebone Black and store it in ~/mybbb.dat
 cd ~
 echo "{% extends 'beaglebone-black.jinja2' %}" > mybbb.dat
-echo "{% set ssh_host = '10.0.0.50' %}" >> mybbb.dat
-echo "{% set connection_command = 'telnet 10.0.0.50' %}" >> mybbb.dat
+echo "{% set connection_command = 'telnet localhost 8020' %}" >> mybbb.dat
 
 # Import the Beaglebone Black Device Dictionary file into the LAVA2 Server
 sudo DEBIAN_FRONTEND=noninteractive lava-server manage device-dictionary --hostname bbb01 --import mybbb.dat
