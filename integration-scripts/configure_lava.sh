@@ -12,8 +12,8 @@ sudo DEBIAN_FRONTEND=noninteractive cp -v /vagrant/device-types/qemu.jinja2 /etc
 
 # Add a Device Type qemu and Device qemu01 for the QEMU VM
 cd /etc/lava-server/dispatcher-config/device-types/
-sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device-type qemu
-sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device --device-type qemu qemu01
+sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device-type qemu 
+sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device --device-type qemu qemu01 --worker jessie.raw
 
 # Create the Device Dictionary file for a QEMU VM and store it in ~/myqemu.dat
 cd ~
@@ -29,7 +29,7 @@ sudo DEBIAN_FRONTEND=noninteractive lava-server manage device-dictionary --hostn
 # Add a Device Type beaglebone-black and Device bbb01 for the Beaglebone Black
 cd /etc/lava-server/dispatcher-config/device-types/
 sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device-type beaglebone-black
-sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device --device-type beaglebone-black bbb01
+sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device --device-type beaglebone-black bbb01 --worker jessie.raw
 
 # Create the Device Dictionary file for the Beaglebone Black and store it in ~/mybbb.dat
 cd ~
