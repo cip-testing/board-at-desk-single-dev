@@ -34,4 +34,8 @@ sudo cp /vagrant/scripts/local-storage-server.conf /etc/nginx/conf.d/
 # Start the KernelCI webserver to run in the background
 /vagrant/scripts/start_webserver.sh &
 
+# Add port 8020 to the ser2net to connect to the Beaglebone Black over telnet & Restart ser2net daemon
+echo "8020:telnet:0:/dev/ttyUSB0:115200 8DATABITS NONE 1STOPBIT banner" | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/ser2net.conf
+sudo systemctl restart ser2net.service
+
 echo "END: configure_singledev.sh"
