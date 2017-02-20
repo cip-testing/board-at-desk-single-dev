@@ -27,7 +27,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postgresql tftp
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install qemu-kvm libvirt-bin lava
 
 # Add the vagrant user to the libvirtd and kvm groups
-sudo DEBIAN_FRONTEND=noninteractive usermod -a -G libvirtd,kvm vagrant
+sudo DEBIAN_FRONTEND=noninteractive usermod -a -G libvirt,kvm vagrant
 
 # Configure Apache web server & restart the apache2 service
 sudo DEBIAN_FRONTEND=noninteractive a2dissite 000-default
