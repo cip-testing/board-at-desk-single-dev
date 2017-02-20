@@ -23,14 +23,11 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 # Install postgresql & tftp
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postgresql tftp
 
-# Install qemu & KVM
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y install qemu-kvm libvirt-bin
+# Install qemu, KVM & LAVA
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install qemu-kvm libvirt-bin lava
 
 # Add the vagrant user to the libvirtd and kvm groups
 sudo DEBIAN_FRONTEND=noninteractive usermod -a -G libvirtd,kvm vagrant
-
-# Install Lava Server
-sudo DEBIAN_FRONTEND=noninteractive apt-get -t jessie-backports -y install lava-server
 
 # Configure Apache web server & restart the apache2 service
 sudo DEBIAN_FRONTEND=noninteractive a2dissite 000-default
