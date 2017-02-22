@@ -6,19 +6,12 @@
 # Stop nginx
 sudo DEBIAN_FRONTEND=noninteractive systemctl stop nginx.service
 
-# Find the PID of SimpleHTTPServer and Stop it
-#sudo DEBIAN_FRONTEND=noninteractive pgrep -f SimpleHTTPServer | xargs kill
-
 # Add jessie-backports repository
 echo "deb http://http.debian.net/debian jessie-backports main" | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/sources.list
 
 # Update the system
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y update
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
-
-# LAVA is currently packaged for Debian unstable using Django1.8 and Postgresql. 
-# LAVA packages are now available from official Debian mirrors for Debian 
-# unstable. e.g. to install the master, use:
 
 # Install postgresql & tftp
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postgresql tftp
@@ -39,8 +32,4 @@ sudo DEBIAN_FRONTEND=noninteractive service apache2 restart
 # Start nginx
 sudo DEBIAN_FRONTEND=noninteractive systemctl start nginx.service
 
-#Put this as a VirtualHost under Apache
-# Start SimpleHTTPServer
-#cd /var/www/images/kernel-ci
-#python -m SimpleHTTPServer 8010 &
 cd ~
