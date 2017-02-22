@@ -24,10 +24,9 @@ sudo sed -ie "/FILE_SERVER_URL/s/127.0.0.1/127.0.0.1:8010/g" /srv/kernelci-front
 # Comment out listen 80 lines in /etc/nginx/sites-available/default to avoid port 80 conflict
 sudo sed -ie '/#/!s/listen/# listen/g' /etc/nginx/sites-available/default
 
-# We don't need to do this because kernel is not built yet
 # 3. Run the fileserver from the directory that has the build.log, kernel.config, system.map, zImage and dtbs:
-#sudo mkdir /var/www/images/kernel-ci
-#sudo chown www-data:www-data /var/www/images/kernel-ci
+sudo mkdir /var/www/images/kernel-ci
+sudo chown www-data:www-data /var/www/images/kernel-ci
 
 # Storage Server runs under Nginx per /etc/nginx/conf.d/local-storage-server.conf
 sudo cp /vagrant/scripts/local-storage-server.conf /etc/nginx/conf.d/
