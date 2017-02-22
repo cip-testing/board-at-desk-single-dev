@@ -14,10 +14,8 @@ export CROSS_COMPILE=arm-linux-gnueabihf-
 ~/kernelci-build/build.py -c allnoconfig -p CIP-KernelCI
 echo "Building ARMhf cip-stegosaurus Tree"
 export TREE_NAME=cip-stegosaurus
-~/kernelci-build/build.py -c tinyconfig -p CIP-KernelCI
-~/kernelci-build/build.py -c allnoconfig -p CIP-KernelCI
-# ~/kernelci-build/build.py -c sunxi_defconfig -p CIP-KernelCI
-# ~/kernelci-build/build.py -c axm55xx_defconfig -p CIP-KernelCI
+~/kernelci-build/build.py -c sunxi_defconfig -p CIP-KernelCI
+~/kernelci-build/build.py -c axm55xx_defconfig -p CIP-KernelCI
 echo "Building ARMhf cip-triceratops Tree"
 export TREE_NAME=cip-triceratops
 ~/kernelci-build/build.py -c tinyconfig -p CIP-KernelCI
