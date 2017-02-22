@@ -16,4 +16,5 @@ The current technology used to create that VM is Vagrant.
 * Please read the Testing at [CIP FAQ](https://wiki.linuxfoundation.org/civilinfrastructureplatform/ciptestingfaq) to learn more about this action.
 * Join the technical mailing list ( [cip-dev](https://lists.cip-project.org/mailman/listinfo/cip-dev) ) to follow this effort.
 * Report a [bug](https://gitlab.com/cip-project/testing/boards). 
+* [CIP testing project home page](https://wiki.linuxfoundation.org/civilinfrastructureplatform/ciptesting)
 
