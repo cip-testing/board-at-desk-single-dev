@@ -70,7 +70,7 @@ http://localhost:8080
 
 10.) Click on the **qemu** device type
 
-11.) Copy and past the contents of the file ```/vagrant/device-types/qemu-health-check.yaml``` into the Health check job textbox.
+11.) Copy and past the contents of the file ```/vagrant/tests/qemu-health-check.yaml``` into the Health check job textbox.
 
 12.) Click on the **Save** button in the lower right-hand corner of the page
 
@@ -78,7 +78,7 @@ http://localhost:8080
 
 13.) Click on the **bbb01** device type
 
-14.) Copy and past the contents of the file ```/vagrant/device-types/beaglebone-black-health-check.yaml``` into the Health check job textbox.
+14.) Copy and past the contents of the file ```/vagrant/tests/bbb_debian_ramdisk_test.yaml``` into the Health check job textbox.
 
 15.) Click on the **Save** button in the lower right-hand corner of the page
 
