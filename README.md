@@ -8,6 +8,7 @@ The current technology used to create that VM is Vagrant.
 # Interesting links #
 
 * Board at desk - single dev [feature page](https://wiki.linuxfoundation.org/civilinfrastructureplatform/ciptestingboardatdesksingledevfeaturepage)
+* [Download](https://wiki.linuxfoundation.org/civilinfrastructureplatform/cipdownload) Board at desk - single dev.
 * Instructions to [download and set up Board at desk - single dev](https://wiki.linuxfoundation.org/civilinfrastructureplatform/ciptestingboardatdesksingledevsetup).
 * [Connect and configure Beaglebone Black](https://wiki.linuxfoundation.org/civilinfrastructureplatform/beagleboneblackboard) to test the kernel on the board.
 
