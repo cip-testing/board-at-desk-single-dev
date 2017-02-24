@@ -40,6 +40,8 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 80, host: 8080
   # Forward port 443 for the https Lava Frontend Web Server
   config.vm.network :forwarded_port, guest: 443, host: 4443
+  # Configure network accessibility for tftp server
+  config.vm.network "public_network", use_dhcp_assigned_default_route: true
 
   config.vm.provision "build", type: "shell" do |s|
     s.privileged = false
