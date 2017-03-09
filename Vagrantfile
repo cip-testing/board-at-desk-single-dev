@@ -47,4 +47,6 @@ Vagrant.configure(2) do |config|
     s.privileged = false
     s.inline = $build
   end
+
+  config.vm.synced_folder ".", "/vagrant", type: "rsync"
 end
