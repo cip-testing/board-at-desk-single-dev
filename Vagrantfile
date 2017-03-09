@@ -26,7 +26,7 @@ Vagrant.configure(2) do |config|
     "--vendorid", "067b", 
     "--productid", "2303"]
     
-    vbox.customize ["modifyvm", :id, "--memory", "8192"]
+    vbox.customize ["modifyvm", :id, "--memory", "1024"]
     vbox.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
