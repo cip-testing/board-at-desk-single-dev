@@ -43,7 +43,7 @@ Vagrant.configure(2) do |config|
   # Configure network accessibility for tftp server
   config.vm.network "public_network", use_dhcp_assigned_default_route: true
 
-  config.vm.provision "build", type: "shell" do |s|
+  config.vm.provision "shell" do |s|
     s.privileged = false
     s.inline = $build
   end
