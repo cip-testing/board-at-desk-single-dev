@@ -3,13 +3,16 @@
 # SPDX-License-Identifier:	Apache-2.0
 echo "START: install_dependencies.sh"
 
-#Add repositories
+#Add repositories - but prefer Jessie packages
+echo 'APT::Default-Release "jessie";' | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/apt.conf.d/00default-jessie
 # Add Testing repository - main branch
 echo "deb http://http.us.debian.org/debian testing main" | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/sources.list
 echo "deb-src http://http.us.debian.org/debian testing main" | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/sources.list
 
 # Add Architectures that you will be building
+sudo DEBIAN_FRONTEND=noninteractive dpkg --add-architecture armel
 sudo DEBIAN_FRONTEND=noninteractive sudo dpkg --add-architecture armhf
+sudo DEBIAN_FRONTEND=noninteractive dpkg --add-architecture arm64
 
 # Update & upgrade the system
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y update
@@ -18,8 +21,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 # Install the dependencies
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install git python-pip python-dev python-concurrent.futures python-tornado libffi-dev libyaml-dev libssl-dev rng-tools python-requests ser2net telnet screen
 
-# Install the ARM Toolchain
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y install gcc-arm-linux-gnueabi gcc-arm-linux-gnueabihf
+# Install the ARM, ARM-HF & ARM64 Toolchain
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install crossbuild-essential-armel crossbuild-essential-armhf crossbuild-essential-arm64
 
 # Remove library 
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y remove libgnutls-deb0-28
