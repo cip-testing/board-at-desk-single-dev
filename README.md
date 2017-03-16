@@ -1,7 +1,7 @@
 # Board at desk - single dev description  #
 
 Board at desk - single dev is an effort to ease the deployment of KernelCI and LAVAv2 allowing
-a developer with a board connected to its machine test kernels. 
+a developer with a board connected to their machine to test kernels. 
 In order to do so, a VM has been created with all the tools and configurations required. 
 The current technology used to create that VM is Vagrant. 
 
