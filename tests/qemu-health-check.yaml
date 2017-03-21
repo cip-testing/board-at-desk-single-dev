@@ -5,6 +5,8 @@ job_name: Inline Test Definition example
 # Reasonable defaults for a simple job
 timeouts:
   job:
+    # this timeout and the 2 below may need increasing to as much as 20 - in each case
+    # if the test fails due to slow downloading
     minutes: 15
   action:
     minutes: 5
