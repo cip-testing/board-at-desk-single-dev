@@ -15,7 +15,6 @@ SCRIPT
 
 Vagrant.configure(2) do |config|
   config.vm.provider :virtualbox do |vbox, override|
-    vbox.name = "CIP-Board-at-Desk-Single-Dev"
     config.vm.box = "debian/jessie64"
     
     # Add USB Filter to connect FTDI USB-to-Serial cable to VM
