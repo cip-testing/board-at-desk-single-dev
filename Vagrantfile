@@ -4,6 +4,7 @@
 $build = <<SCRIPT
 cd /vagrant
 
+integration-scripts/install_ifupdown_workaround.sh
 integration-scripts/install_dependencies.sh
 integration-scripts/install_backend.sh
 integration-scripts/install_frontend.sh
