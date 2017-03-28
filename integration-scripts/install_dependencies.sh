@@ -3,6 +3,13 @@
 # SPDX-License-Identifier:	Apache-2.0
 echo "START: install_dependencies.sh"
 
+set -e
+
+if [ -f ~/mybbb.dat ] ; then
+    echo 'KernelCI already configured remove ~/mybbb.dat to force configuration'
+    exit 1
+fi
+
 #Add repositories - but prefer Jessie packages
 #echo 'APT::Default-Release "jessie";' | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/apt.conf.d/00default-jessie
 # Add Testing repository - main branch

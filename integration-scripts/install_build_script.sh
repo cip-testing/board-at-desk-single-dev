@@ -3,6 +3,8 @@
 # SPDX-License-Identifier:	Apache-2.0
 echo "START: install_build_script.sh"
 
+set -e
+
 cd $HOME 
 git clone https://github.com/kernelci/kernelci-build.git
 cd kernelci-build

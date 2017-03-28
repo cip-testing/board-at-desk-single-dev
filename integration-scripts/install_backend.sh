@@ -4,6 +4,8 @@
 # Install kernelci backend
 echo "START: install_backend.sh"
 
+set -e
+
 cd $HOME && mkdir git-repos && cd git-repos
 git clone https://github.com/kernelci/kernelci-backend-config.git kernelci-backend
 cd kernelci-backend

@@ -4,6 +4,8 @@
 # Install kernelci frontend
 echo "START: install_frontend.sh"
 
+set -e
+
 cd $HOME/git-repos
 git clone https://github.com/kernelci/kernelci-frontend-config.git kernelci-frontend
 
