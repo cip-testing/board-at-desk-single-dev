@@ -17,6 +17,8 @@ cat /vagrant/config/secrets-frontend.yml | sed -e "s/TOKEN/${TOKEN}/" \
     > kernelci-frontend/secrets.yml
 
 cd kernelci-frontend
+sed -i group_vars/all -e 's/^role: production/role: atdesk/'
+
 set +e
 ansible-playbook -i hosts site.yml -l local -c local -K -D \
                  -e secrets.yml -e "@secrets.yml"
