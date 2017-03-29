@@ -3,6 +3,8 @@
 # SPDX-License-Identifier:	Apache-2.0
 # Install LAVA v2
 
+set -e
+
 # Stop nginx
 sudo DEBIAN_FRONTEND=noninteractive systemctl stop nginx.service
 

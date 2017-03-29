@@ -4,6 +4,8 @@
 # Configure KernelCI for 'Single Developer at Desk with Board' Use Case
 echo "START: configure_singledev.sh"
 
+set -e
+
 # To make KernelCI Server available to host machine
 # Add host to /srv/kernelci-frontend/app/server.py
 sudo sed -ie 's/app.run(thread/app.run(host='\''0.0.0.0'\'', thread/g' /srv/kernelci-frontend/app/server.py

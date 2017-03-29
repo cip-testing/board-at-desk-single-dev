@@ -3,6 +3,8 @@
 # SPDX-License-Identifier:	Apache-2.0
 # Configure Lava Server (V2 or "pipeline" jobs only)
 
+set -e
+
 #BugFix: tftp error - set TFTP_DIRECTORY="/var/lib/lava/dispatcher/tmp/"
 sudo sed -ie 's/srv\/tftp/var\/lib\/lava\/dispatcher\/tmp/g' /etc/default/tftpd-hpa
 
