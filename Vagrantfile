@@ -12,6 +12,7 @@ integration-scripts/install_build_script.sh
 integration-scripts/configure_singledev.sh
 integration-scripts/install_lava.sh
 integration-scripts/configure_lava.sh
+integration-scripts/configure_lavapdu.sh
 SCRIPT
 
 Vagrant.configure(2) do |config|
