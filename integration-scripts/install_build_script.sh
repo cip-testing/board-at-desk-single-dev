@@ -8,6 +8,7 @@ set -e
 cd $HOME 
 git clone https://github.com/kernelci/kernelci-build.git
 cd kernelci-build
+git checkout f60fce159179b186dbb16c72f78f0d59db576aa7
 
 MASTER_KEY=`cat $HOME/backend-admin-token.txt`
 sed -i build.py -e 's/^install = False/install = True/'
