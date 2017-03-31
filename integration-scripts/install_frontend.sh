@@ -4,7 +4,7 @@
 # Install kernelci frontend
 echo "START: install_frontend.sh"
 
-set -e
+# set -e
 
 cd $HOME/git-repos
 git clone https://github.com/kernelci/kernelci-frontend-config.git kernelci-frontend
@@ -19,11 +19,11 @@ cat /vagrant/config/secrets-frontend.yml | sed -e "s/TOKEN/${TOKEN}/" \
 cd kernelci-frontend
 sed -i group_vars/all -e 's/^role: production/role: atdesk/'
 
-set +e
+# set +e
 ansible-playbook -i hosts site.yml -l local -c local -K -D \
                  -e secrets.yml -e "@secrets.yml"
 # TODO: Fix error during the first run (second run succeeds deterministically)
-set -e
+# set -e
 ansible-playbook -i hosts site.yml -l local -c local -K -D \
                  -e secrets.yml -e "@secrets.yml"
 
