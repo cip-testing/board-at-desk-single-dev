@@ -9,9 +9,6 @@ set -e
 cd $HOME/git-repos
 git clone https://github.com/kernelci/kernelci-frontend-config.git kernelci-frontend
 
-sed -i kernelci-frontend/roles/install-app/tasks/main.yml \
-    -e 's/kernelci\/kernelci-frontend.git/siemens\/kernelci-frontend.git/'
-
 TOKEN=`cat $HOME/backend-admin-token.txt`
 cat /vagrant/config/secrets-frontend.yml | sed -e "s/TOKEN/${TOKEN}/" \
     > kernelci-frontend/secrets.yml
