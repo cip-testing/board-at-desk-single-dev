@@ -40,6 +40,7 @@ sudo -H DEBIAN_FRONTEND=noninteractive pip install --upgrade cffi
 sudo -H DEBIAN_FRONTEND=noninteractive pip install ansible
 sudo -H DEBIAN_FRONTEND=noninteractive pip install markupsafe
 sudo -H DEBIAN_FRONTEND=noninteractive pip install simplejson
+sudo -H DEBIAN_FRONTEND=noninteractive pip install pyelftools
 
 # Start rngd service
 sudo DEBIAN_FRONTEND=noninteractive rngd -r /dev/urandom &
