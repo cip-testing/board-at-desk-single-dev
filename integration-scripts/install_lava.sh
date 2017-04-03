@@ -31,6 +31,9 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y install qemu-kvm libvirt-bin lava
 # Add the vagrant user to the libvirtd and kvm groups
 sudo DEBIAN_FRONTEND=noninteractive usermod -a -G libvirt,kvm vagrant
 
+# Change line in /etc/apache2/ports.conf to avoid port 80 conflict
+sudo sed -ie '/Listen/s/80/8080/' /etc/apache2/ports.conf
+
 # Configure Apache web server & restart the apache2 service
 sudo DEBIAN_FRONTEND=noninteractive a2dissite 000-default
 sudo DEBIAN_FRONTEND=noninteractive a2enmod proxy
