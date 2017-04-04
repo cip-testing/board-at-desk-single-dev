@@ -34,6 +34,9 @@ sudo DEBIAN_FRONTEND=noninteractive usermod -a -G libvirt,kvm vagrant
 # Change line in /etc/apache2/ports.conf to avoid port 80 conflict
 sudo sed -ie '/Listen/s/80/8080/' /etc/apache2/ports.conf
 
+# Change line in /etc/apache2/sites-available/lava-server.conf to avoid port 80 conflict
+sudo sed -ie '/\<VirtualHost/s/\:80/\:8080/' /etc/apache2/sites-available/lava-server.conf
+
 # Configure Apache web server & restart the apache2 service
 sudo DEBIAN_FRONTEND=noninteractive a2dissite 000-default
 sudo DEBIAN_FRONTEND=noninteractive a2enmod proxy
