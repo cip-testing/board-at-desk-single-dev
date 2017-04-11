@@ -14,16 +14,7 @@ set -e
 
 cd $HOME && mkdir git-repos && cd git-repos
 git clone https://github.com/kernelci/kernelci-backend-config.git kernelci-backend
-cd kernelci-backend
 
-#commit 00bded1b69fa6233daf2837f383b5279acc21c44
-#Author: Milo Casagrande <milo.casagrande@linaro.org>
-#Date:   Mon Dec 12 18:10:41 2016 +0100
-#
-#    Fix nginx configuration
-#
-git checkout 00bded1b69fa6233daf2837f383b5279acc21c44
-cd ..
 cp /vagrant/config/secrets-backend.yml kernelci-backend/secrets.yml
 
 # Fixme: Don't let ansible try to create the file in the first place.
