@@ -12,7 +12,7 @@ echo "START: install_build_script.sh"
 set -e
 
 cd $HOME 
-git clone https://github.com/kernelci/kernelci-build.git
+git clone https://gitlab.com/cip-project/kernelci-build
 cd kernelci-build
 
 MASTER_KEY=`cat $HOME/backend-admin-token.txt`
