@@ -8,32 +8,21 @@
 # You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 # check parameter
-if [ $# -ne 1 ] ; then
-	echo "Usage: $0 boxLocation" >&2
+if [ $# -ne 2 ] ; then
+	echo "Usage: $0 boxLocation boxNewName" >&2
 	exit 1
 fi
 box=$1
-# make directory (what if it exists?)
-#dir=importBox
-#mkdir $dir
-#cd $dir
-# importedBox is another parameter?
-vagrant box add importedBox $1
-if [ ! -f Vagrantfile ] ; then
-    vagrant init importedBox
-    git clone https://gitlab.com/cip-project/board-at-desk-single-dev.git
-    rm Vagrantfile
-    cp board-at-desk-single-dev/Vagrantfile .
-    mv board-at-desk-single-dev/integration-scripts .
-    # integration-scripts only needed because we're using the Vagrantfile as it stands
-    # and provisioning will then spot that this is an already provisioned box
-    rm -rf board-at-desk-single-dev
-else
-    # it is probably there because we're running this script also from git
-    mv -f Vagrantfile Vagrantfile-tmp
-    vagrant init importedBox
-    mv Vagrantfile-tmp Vagrantfile
-fi    
+importedBox=$2
+vagrant box add $2 $1
+mv -f Vagrantfile Vagrantfile-tmp
+vagrant init $2
+mv Vagrantfile-tmp Vagrantfile
+sed -i Vagrantfile -e 's/debian\/jessie64/'"$2"'/'
+
 # are any mods necessary?
 vagrant up
+echo The above should end with "==> default: KernelCI already configured remove ~/mybbb.dat to force configuration"
+echo and a report that the ssh command responded with a non-zero exit status. This is expected!
+echo
 echo new KernelCI board at desk ready for use
