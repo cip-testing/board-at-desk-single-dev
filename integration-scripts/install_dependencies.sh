@@ -36,7 +36,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y install git python-pip python-dev
 
 # Install the ARM, ARM-HF & ARM64 Toolchain
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install gcc-arm-linux-gnueabi gcc-arm-linux-gnueabihf gcc-aarch64-linux-gnu
-
+# Using expect
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install expect
 # Remove library 
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y remove libgnutls-deb0-28
 
