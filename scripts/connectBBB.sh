@@ -8,7 +8,7 @@
 # You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #USAGE: connectBBB.sh 192.168.1.50 8020 debian lava123
-if {[llength $argv] == 0} {
+if {[llength $argv] != 4} {
   send_user "Usage: connectBBB.sh <ip address> <port> <username> <password>\n"
   exit 1
 }
