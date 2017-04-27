@@ -51,4 +51,7 @@ echo "{% set reboot_command = 'pduclient --daemon localhost --hostname 127.0.0.1
 # Import the Beaglebone Black Device Dictionary file into the LAVA2 Server
 sudo DEBIAN_FRONTEND=noninteractive lava-server manage device-dictionary --hostname bbb01 --import mybbb.dat
 
-
+# Change the default shutdown message for kernel v4.4 - comment these lines out if using older kernel with a Shutdown message of "The system is going down for reboot NOW"
+cd /usr/lib/python2.7/dist-packages/lava_dispatcher/pipeline/utils/
+sudo DEBIAN_FRONTEND=noninteractive sed -ie "/SHUTDOWN_MESSAGE/s/The system is going down for reboot NOW/Restarting system/" constants.py
+cd ~
