@@ -28,7 +28,7 @@ actions:
     to: tftp
     kernel:
       # if the health check needs to be a robust build
-      url: http://localhost:8010/cip-bbb1/cip_v4.4.27/v4.4.27/arm/omap2plus_defconfig/zImage
+      url: http://localhost:8010/TREE/BRANCH/TAG/arm/omap2plus_defconfig/zImage
     ramdisk:
       # for the moment download from linaro
       url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/initramfs.cpio.gz
@@ -37,13 +37,13 @@ actions:
       add-header: u-boot
     modules:
       # matching the kernel
-      url: http://localhost:8010/cip-bbb1/cip_v4.4.27/v4.4.27/arm/omap2plus_defconfig/modules.tar.xz
+      url: http://localhost:8010/TREE/BRANCH/TAG/arm/omap2plus_defconfig/modules.tar.xz
       compression: xz
     # despite this being a Debian initramfs, it is not a complete Debian rootfs, so use oe compatibility
     os: oe
     dtb:
       # and again
-      url: http://localhost:8010/cip-bbb1/cip_v4.4.27/v4.4.27/arm/omap2plus_defconfig/dtbs/am335x-boneblack.dtb
+      url: http://localhost:8010/TREE/BRANCH/TAG/arm/omap2plus_defconfig/dtbs/am335x-boneblack.dtb
 
 
 # BOOT_BLOCK
