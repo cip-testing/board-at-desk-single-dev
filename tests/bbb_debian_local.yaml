@@ -27,19 +27,22 @@ actions:
       minutes: 4
     to: tftp
     kernel:
-      # or something!
+      # if the health check needs to be a robust build
       url: http://localhost:8010/cip-bbb1/cip_v4.4.27/v4.4.27/arm/omap2plus_defconfig/zImage
     ramdisk:
+      # for the moment download from linaro
       url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/initramfs.cpio.gz
       compression: gz
       # the bootloader needs a u-boot header on the modified ramdisk
       add-header: u-boot
     modules:
+      # matching the kernel
       url: http://localhost:8010/cip-bbb1/cip_v4.4.27/v4.4.27/arm/omap2plus_defconfig/modules.tar.xz
       compression: xz
     # despite this being a Debian initramfs, it is not a complete Debian rootfs, so use oe compatibility
     os: oe
     dtb:
+      # and again
       url: http://localhost:8010/cip-bbb1/cip_v4.4.27/v4.4.27/arm/omap2plus_defconfig/dtbs/am335x-boneblack.dtb
 
 
@@ -61,6 +64,7 @@ actions:
     timeout:
       minutes: 5
     definitions:
+      # getting the smoke test off linaro?
     - repository: git://git.linaro.org/qa/test-definitions.git
       from: git
       path: ubuntu/smoke-tests-basic.yaml
