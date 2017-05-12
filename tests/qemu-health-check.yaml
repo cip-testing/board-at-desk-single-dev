@@ -24,7 +24,7 @@ context:
 metadata:
   # please change these fields when modifying this job for your own tests.
   docs-source: writing-tests
-  docs-filename: inline-test-definition-example.yaml
+  docs-filename: qemu-health-check.yaml
 
 actions:
 - deploy:
