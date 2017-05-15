@@ -16,7 +16,7 @@ then
     echo "Usage: create_test.sh <inputFile> <outputFile>"  
     exit 1
 fi
-TREENAME=$TREE
+TREENAME=$TREE_NAME
 # check they're yaml?
 INP=$1
 OUP=$2
