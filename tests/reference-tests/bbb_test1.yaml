@@ -10,7 +10,7 @@ device_type: beaglebone-black
 
 # NFS fails on panda and arndale.
 
-job_name: standard Debian ARMMP ramdisk test on bbb
+job_name: local simple inline bbb test
 timeouts:
   job:
     minutes: 10
@@ -29,41 +29,55 @@ actions:
       minutes: 4
     to: tftp
     kernel:
-      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/vmlinuz
+      # if the health check needs to be a robust build
+      url: http://localhost:8010/TREE/BRANCH/TAG/arm/omap2plus_defconfig/zImage
     ramdisk:
+      # for the moment download from linaro
       url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/initramfs.cpio.gz
       compression: gz
       # the bootloader needs a u-boot header on the modified ramdisk
       add-header: u-boot
     modules:
-      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/modules.tar.gz
-      compression: gz
+      # matching the kernel
+      url: http://localhost:8010/TREE/BRANCH/TAG/arm/omap2plus_defconfig/modules.tar.xz
+      compression: xz
     # despite this being a Debian initramfs, it is not a complete Debian rootfs, so use oe compatibility
     os: oe
     dtb:
-      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/dtbs/am335x-boneblack.dtb
+      # and again
+      url: http://localhost:8010/TREE/BRANCH/TAG/arm/omap2plus_defconfig/dtbs/am335x-boneblack.dtb
+
 
 # BOOT_BLOCK
 - boot:
-    auto_login:
-      login_prompt: 'beaglebone login:'
-      username: root
-      password_prompt: 'Password:'
-      password: lava123
-    prompts:
-      - 'debian@beaglebone:~$'
     method: u-boot
     commands: ramdisk
     type: bootz
+    prompts:
+    # escape the brackets to ensure that the prompt does not match
+    # kernel debug lines which may mention initramfs
+    - '\(initramfs\)'
     timeout:
       minutes: 2
 
 # TEST_BLOCK
 - test:
     timeout:
-      minutes: 5
+      minutes: 4
     definitions:
-    - repository: git://git.linaro.org/qa/test-definitions.git
-      from: git
-      path: ubuntu/smoke-tests-basic.yaml
+    - repository:
+        metadata:
+          name: simple-commands
+          description: "check shell"
+          os:
+          - oe
+          scope:
+          - functional
+        run:
+          steps:
+          - ls
+          - pwd
+          - uname
+      from: inline
+      path: bbb_test1.yaml
       name: smoke-tests
