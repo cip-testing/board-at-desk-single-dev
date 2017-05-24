@@ -13,7 +13,7 @@ This is a list of links you should check if you are interested in B@D:
 
 # Contribute to the CIP testing project: #
 
-If yoiu are interested in contributing to this effort, please check the following resources:
+If you are interested in contributing to this effort, please check the following resources:
 * To learn more about the CIP testing project and how to contribute please check the [Landing Page](https://wiki.linuxfoundation.org/civilinfrastructureplatform/ciptesting)
 * Please read the Testing at [CIP FAQ](https://wiki.linuxfoundation.org/civilinfrastructureplatform/ciptestingfaq) to learn more about this action.
 * Join the technical mailing list ( [cip-dev](https://lists.cip-project.org/mailman/listinfo/cip-dev) ) to follow this effort or contact the developers.
