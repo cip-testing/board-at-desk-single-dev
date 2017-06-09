@@ -26,8 +26,9 @@ if [ ! -d /etc/sysfs.d/ ]; then
 fi
 sudo touch /etc/sysfs.d/99-thp-defrag.conf
 
-# TODO: This asks for a sudo password, which we need to provide non-interactively
 cd kernelci-backend
+sed -i 's/hkp:\/\/keyserver.ubuntu.com/hkp:\/\/keyserver.ubuntu.com:80/g' roles/install-deps/tasks/install-mongodb.yml
+# TODO: This asks for a sudo password, which we need to provide non-interactively
 ansible-playbook -i hosts site.yml -l local -c local -K -e "@secrets.yml" \
                  -e "@secrets.yml" --skip-tags=backup,firewall,web-server
 
