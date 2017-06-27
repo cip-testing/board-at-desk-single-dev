@@ -27,6 +27,11 @@ Vagrant.configure(2) do |config|
     vbox.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.memory = 2048
+    libvirt.cpus = 2
+  end
+
   # Forward port 8888 for the internal REST server 
   config.vm.network :forwarded_port, guest: 8888, host: 8888
   # Forward port 8010 for the Storage Server
