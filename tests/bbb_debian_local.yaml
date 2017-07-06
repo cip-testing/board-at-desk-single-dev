@@ -33,7 +33,7 @@ actions:
       url: http://localhost:8010/TREE/BRANCH/TAG/arm/omap2plus_defconfig/zImage
     ramdisk:
       # for the moment download from linaro
-      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/initramfs.cpio.gz
+      url: http://localhost:8010/initramfs/initramfs.cpio.gz
       compression: gz
       # the bootloader needs a u-boot header on the modified ramdisk
       add-header: u-boot
