@@ -8,6 +8,7 @@
 # You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 # Configure Lava Server (V2 or "pipeline" jobs only)
+echo "START: configure_lava.sh"
 
 set -e
 
@@ -55,3 +56,5 @@ sudo DEBIAN_FRONTEND=noninteractive lava-server manage device-dictionary --hostn
 cd /usr/lib/python2.7/dist-packages/lava_dispatcher/pipeline/utils/
 sudo DEBIAN_FRONTEND=noninteractive sed -ie "/SHUTDOWN_MESSAGE/s/The system is going down for reboot NOW/Restarting system/" constants.py
 cd ~
+
+echo "END: configure_lava.sh"

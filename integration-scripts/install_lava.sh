@@ -48,3 +48,5 @@ sudo DEBIAN_FRONTEND=noninteractive service apache2 restart
 sudo DEBIAN_FRONTEND=noninteractive systemctl start nginx.service
 
 cd ~
+
+echo "END: install_lava.sh"
