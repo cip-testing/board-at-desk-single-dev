@@ -26,7 +26,9 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postgresql tftp
 
 # Install qemu, KVM & LAVA
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y install qemu-kvm libvirt-bin lava
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install qemu-kvm libvirt-bin 
+# use jessie-backports otherwise version 2017-7 is installed
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y -t jessie-backports install lava-server
 
 # Add the vagrant user to the libvirtd and kvm groups
 sudo DEBIAN_FRONTEND=noninteractive usermod -a -G libvirt,kvm vagrant
