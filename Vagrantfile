@@ -26,6 +26,7 @@ Vagrant.configure(2) do |config|
     vbox.customize ["modifyvm", :id, "--vram", "12"]
     vbox.customize ["modifyvm", :id, "--memory", "2048"]
     vbox.customize ["modifyvm", :id, "--cpus", "2"]
+    vbox.customize ["modifyvm", :id, "--usb", "on"]
   end
 
   config.vm.provider :libvirt do |libvirt|
