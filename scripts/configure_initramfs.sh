@@ -14,21 +14,22 @@ if [ $locn != "initramfs" ]; then
     echo this script must be run from the initramfs directory
     exit 1
 fi
-    #
+# create /dev and special files
 mkdir dev
 
 sudo mknod dev/console c 5 1
-
 sudo mknod dev/null c 1 3
-
 sudo mknod dev/zero c 1 5
 
+# populate /lib
 mkdir lib usr/lib
 
 rsync -a /usr/arm-linux-gnueabihf/lib/ ./lib/
-
 rsync -a /usr/arm-linux-gnueabihf/lib/ ./usr/lib/
+
+# add mount points
 mkdir proc sys root
+# /etc and configuration files
 mkdir etc
 
 echo "null::sysinit:/bin/mount -a" > etc/inittab
@@ -43,9 +44,11 @@ echo  beagleboneblack > etc/hostname
 
 echo "root::0:0:root:/root:/bin/sh" > etc/passwd
 
-# ??
+# NO!!! ??
 wget https://gitlab.com/cip-project/cip-testing/testing/snippets/1666441 -O init
 chmod +x init
+#or?
+ln -s sbin/init init
 
 # create the initramfs?
 find . -depth -print | cpio -ocvB | gzip -c > ../initramfs.cpio.gz
