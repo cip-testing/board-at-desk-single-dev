@@ -66,5 +66,5 @@ actions:
     definitions:
     - repository: git://git.linaro.org/qa/test-definitions.git
       from: git
-      path: ubuntu/smoke-tests-basic.yaml
+      path: common/dt-selftests.yaml
       name: smoke-tests
