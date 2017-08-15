@@ -21,9 +21,8 @@ sudo DEBIAN_FRONTEND=noninteractive cp -v /vagrant/device-types/qemu.jinja2 /etc
 
 # Add a Device Type qemu and Device qemu01 for the QEMU VM
 cd /etc/lava-server/dispatcher-config/device-types/
-sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device-type qemu 
-sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device --device-type qemu qemu01 --worker $(hostname --long)
-
+sudo DEBIAN_FRONTEND=noninteractive lava-server manage device-types add qemu 
+sudo DEBIAN_FRONTEND=noninteractive lava-server manage devices add --device-type qemu --worker $(hostname --long) qemu01
 # Create the Device Dictionary file for a QEMU VM and store it in ~/myqemu.dat
 cd ~
 echo "{% extends 'qemu.jinja2' %}" > myqemu.dat 
@@ -32,13 +31,14 @@ echo "{% set mac_addr = '52:54:00:12:34:59' %}" >> myqemu.dat
 echo "{% set memory = '1024' %}" >> myqemu.dat
 
 # Import the QEMU Device Dictionary file into the LAVA2 Server
-sudo DEBIAN_FRONTEND=noninteractive lava-server manage device-dictionary --hostname qemu01 --import myqemu.dat 
+# needs authentication token setting up
+# lava-tool device-dictionary --update myqemu.dat http://lavauser@localhost:8080/RPC2 qemu01
 
 # Beaglebone Black
 # Add a Device Type beaglebone-black and Device bbb01 for the Beaglebone Black
 cd /etc/lava-server/dispatcher-config/device-types/
-sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device-type beaglebone-black
-sudo DEBIAN_FRONTEND=noninteractive lava-server manage add-device --device-type beaglebone-black bbb01 --worker $(hostname --long)
+sudo DEBIAN_FRONTEND=noninteractive lava-server manage device-types add beaglebone-black 
+sudo DEBIAN_FRONTEND=noninteractive lava-server manage devices add --device-type beaglebone-black --worker $(hostname --long) bbb01
 
 # Create the Device Dictionary file for the Beaglebone Black and store it in ~/mybbb.dat
 cd ~
@@ -50,7 +50,8 @@ echo "{% set poweroff_command = 'pduclient --daemon localhost --hostname 127.0.0
 echo "{% set reboot_command = 'pduclient --daemon localhost --hostname 127.0.0.1 --port 3 --command reboot' %}" >> mybbb.dat
 
 # Import the Beaglebone Black Device Dictionary file into the LAVA2 Server
-sudo DEBIAN_FRONTEND=noninteractive lava-server manage device-dictionary --hostname bbb01 --import mybbb.dat
+# needs authentication token setting up
+# lava-tool device-dictionary --update mybbb.dat http://lavauser@localhost:8080/RPC2 bbb01
 
 # Change the default shutdown message for kernel v4.4 - comment these lines out if using older kernel with a Shutdown message of "The system is going down for reboot NOW"
 cd /usr/lib/python2.7/dist-packages/lava_dispatcher/pipeline/utils/
