@@ -32,6 +32,7 @@ echo "{% set memory = '1024' %}" >> myqemu.dat
 
 # Import the QEMU Device Dictionary file into the LAVA2 Server
 # needs authentication token setting up
+sudo DEBIAN_FRONTEND=noninteractive cp myqemu.dat /etc/lava-server/dispatcher-config/devices/qemu01.jinja2
 # lava-tool device-dictionary --update myqemu.dat http://lavauser@localhost:8080/RPC2 qemu01
 
 # Beaglebone Black
@@ -51,6 +52,8 @@ echo "{% set reboot_command = 'pduclient --daemon localhost --hostname 127.0.0.1
 
 # Import the Beaglebone Black Device Dictionary file into the LAVA2 Server
 # needs authentication token setting up
+sudo DEBIAN_FRONTEND=noninteractive cp mybbb.dat /etc/lava-server/dispatcher-config/devices/bbb01.jinja2
+sudo DEBIAN_FRONTEND=noninteractive chown lavaserver.lavaserver /etc/lava-server/dispatcher-config/devices/*
 # lava-tool device-dictionary --update mybbb.dat http://lavauser@localhost:8080/RPC2 bbb01
 
 # Change the default shutdown message for kernel v4.4 - comment these lines out if using older kernel with a Shutdown message of "The system is going down for reboot NOW"
