@@ -44,11 +44,12 @@ echo  beagleboneblack > etc/hostname
 
 echo "root::0:0:root:/root:/bin/sh" > etc/passwd
 
-# NO!!! ??
+# use an example init
 wget https://gitlab.com/cip-project/cip-testing/testing/snippets/1666441 -O init
-chmod +x init
+cp /vagrant/scripts/init-example .
 #or?
-ln -s sbin/init init
+# ln -s sbin/init init
 
 # create the initramfs?
 find . -depth -print | cpio -ocvB | gzip -c > ../initramfs.cpio.gz
+echo now copy ../initramfs.cpio.gz to /var/www/images/kernel-ci/initramfs
