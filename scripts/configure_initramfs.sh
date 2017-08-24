@@ -8,7 +8,7 @@
 # You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 # check we're in initramfs
-wdir=`pwd`
+wdir=$(pwd)
 locn=`basename $wdir`
 if [ $locn != "initramfs" ]; then
     echo this script must be run from the initramfs directory
@@ -25,7 +25,6 @@ sudo mknod dev/zero c 1 5
 mkdir lib usr/lib
 
 rsync -a /usr/arm-linux-gnueabihf/lib/ ./lib/
-rsync -a /usr/arm-linux-gnueabihf/lib/ ./usr/lib/
 
 # add mount points
 mkdir proc sys root
@@ -45,8 +44,7 @@ echo  beagleboneblack > etc/hostname
 echo "root::0:0:root:/root:/bin/sh" > etc/passwd
 
 # use an example init
-wget https://gitlab.com/cip-project/cip-testing/testing/snippets/1666441 -O init
-cp /vagrant/scripts/init-example .
+cp /vagrant/scripts/init-example init
 #or?
 # ln -s sbin/init init
 
