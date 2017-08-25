@@ -10,6 +10,11 @@ echo 0 > /proc/sys/kernel/printk
 #Clear the screen
 clear
 
+#Function for parsing command line options with "=" in them
+# get_opt("init=/sbin/init") will return "/sbin/init"
+get_opt() {
+    echo "$@" | cut -d "=" -f 2
+}
 
 #Process command line options
 for i in $(cat /proc/cmdline); do
