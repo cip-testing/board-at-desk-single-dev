@@ -33,6 +33,11 @@ set -e
 ansible-playbook -i hosts site.yml -l local -c local -K -D \
                  -e secrets.yml -e "@secrets.yml"
 
+# set up token for frontend
+sudo sed -i /srv/kernelci-frontend/app/dashboard/default_settings.py -e 's/^BACKEND_TOKEN = None/BACKEND_TOKEN = '"'$TOKEN'"'/'
+sudo sed -i /srv/kernelci-frontend/app/dashboard/default_settings.py -e 's/^SECRET_KEY = None/SECRET_KEY = '"'${TOKEN}'"'/'
+
+# set up build area
 sudo mkdir -p /var/www/images
 sudo chown -R www-data.www-data /var/www
 
