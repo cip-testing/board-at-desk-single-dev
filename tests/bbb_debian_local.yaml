@@ -29,10 +29,11 @@ actions:
       minutes: 4
     to: tftp
     kernel:
-      # if the health check needs to be a robust build
       url: http://localhost:8010/TREE/BRANCH/TAG/arm/omap2plus_defconfig/zImage
+      type: zimage
     ramdisk:
       # use locally built initramfs (see https://wiki.linuxfoundation.org/civilinfrastructureplatform/cipsystembuildhowto)
+      # url: http://images.validation.linaro.org/snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/initramfs.cpio.gz
       url: http://localhost:8010/initramfs/initramfs.cpio.gz
       compression: gz
       # the bootloader needs a u-boot header on the modified ramdisk
@@ -52,7 +53,6 @@ actions:
 - boot:
     method: u-boot
     commands: ramdisk
-    type: bootz
     prompts:
     # escape the brackets to ensure that the prompt does not match
     # kernel debug lines which may mention initramfs
@@ -66,7 +66,6 @@ actions:
     timeout:
       minutes: 5
     definitions:
-      # getting the smoke test off linaro?
     - repository: git://git.linaro.org/qa/test-definitions.git
       from: git
       path: common/dt-selftests.yaml
