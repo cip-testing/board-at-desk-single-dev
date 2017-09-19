@@ -26,15 +26,16 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postgresql tftp
 
 # Install qemu, KVM & LAVA
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y install qemu-kvm libvirt-bin 
-# use jessie-backports otherwise version 2017-7 is installed
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y -t jessie-backports install lava-server
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install qemu-kvm libvirt-bin lava
 
 # Add the vagrant user to the libvirtd and kvm groups
 sudo DEBIAN_FRONTEND=noninteractive usermod -a -G libvirt,kvm vagrant
 
 # Change line in /etc/apache2/ports.conf to avoid port 80 conflict
 sudo sed -ie '/Listen/s/80/8080/' /etc/apache2/ports.conf
+
+# Disable CSRF cookies
+sudo sed -ie 's/"MOUNT_POINT"/"CSRF_COOKIE_SECURE": false,\n    "SESSION_COOKIE_SECURE": false,\n    "MOUNT_POINT"/' /etc/lava-server/settings.conf
 
 # Change line in /etc/apache2/sites-available/lava-server.conf to avoid port 80 conflict
 sudo sed -ie '/\<VirtualHost/s/\:80/\:8080/' /etc/apache2/sites-available/lava-server.conf
