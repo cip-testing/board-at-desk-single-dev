@@ -9,7 +9,7 @@
 
 # check we're in initramfs
 wdir=$(pwd)
-locn=`basename $wdir`
+locn=$(basename $wdir)
 if [ $locn != "initramfs" ]; then
     echo this script must be run from the initramfs directory
     exit 1
