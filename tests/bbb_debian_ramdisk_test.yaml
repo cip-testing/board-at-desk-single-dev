@@ -29,19 +29,20 @@ actions:
       minutes: 4
     to: tftp
     kernel:
-      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/vmlinuz
+      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/1/vmlinuz
     ramdisk:
-      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/initramfs.cpio.gz
+      # use locally built initramfs (see https://wiki.linuxfoundation.org/civilinfrastructureplatform/cipsystembuildhowto)
+      url: http://localhost:8010/initramfs/initramfs.cpio.gz
       compression: gz
       # the bootloader needs a u-boot header on the modified ramdisk
       add-header: u-boot
     modules:
-      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/modules.tar.gz
+      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/1/modules.tar.gz
       compression: gz
     # despite this being a Debian initramfs, it is not a complete Debian rootfs, so use oe compatibility
     os: oe
     dtb:
-      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/4/dtbs/am335x-boneblack.dtb
+      url: http://snapshots.linaro.org/components/lava/standard/debian/jessie/armhf/1/dtbs/am335x-boneblack.dtb
 
 # BOOT_BLOCK
 - boot:
@@ -62,5 +63,5 @@ actions:
     definitions:
     - repository: git://git.linaro.org/qa/test-definitions.git
       from: git
-      path: ubuntu/smoke-tests-basic.yaml
+      path: common/dt-selftests.yaml
       name: smoke-tests
