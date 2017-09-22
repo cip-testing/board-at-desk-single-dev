@@ -1,0 +1,33 @@
+#!/bin/sh
+
+#Mount things needed by this script
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+
+#Disable kernel messages from popping onto the screen
+echo 0 > /proc/sys/kernel/printk
+
+#Clear the screen
+clear
+
+
+# just hardcode the non existing root device
+root=/dev/ram0
+# Mount the root device
+mount "${root}" /newroot
+
+#Check if $init exists and is executable
+if [[ -x "/newroot/${init}" ]] ; then
+    #Unmount all other mounts so that the ram used by
+    #the initramfs can be cleared after switch_root
+    umount /sys /proc
+    
+    #Switch to the new root and execute init
+    # commented as newroot doesn't get mounted
+    #exec switch_root /newroot "${init}"
+fi
+
+# This will always be run with the exec above commented
+echo "ALERT! $root does not exist. Dropping to a shell!
+PS1='(initramfs) ' exec sh
+
