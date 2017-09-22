@@ -32,7 +32,7 @@ actions:
       # if the health check needs to be a robust build
       url: http://localhost:8010/TREE/BRANCH/TAG/arm/omap2plus_defconfig/zImage
     ramdisk:
-      # for the moment download from linaro
+      # use locally built initramfs
       url: http://localhost:8010/initramfs/initramfs.cpio.gz
       compression: gz
       # the bootloader needs a u-boot header on the modified ramdisk
