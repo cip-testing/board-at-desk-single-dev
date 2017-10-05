@@ -18,7 +18,7 @@ set -e
 cd $HOME/git-repos
 git clone https://github.com/kernelci/kernelci-frontend-config.git kernelci-frontend
 
-# revert to using version of kernelci-backend that works without substantial changes for the release
+# revert to using version of kernelci-frontend that works without substantial changes for the release
 cd kernelci-frontend
 git checkout 71dbe698c9353f01cf63baa318cfb126d1afb207
 cd ..
