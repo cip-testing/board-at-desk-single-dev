@@ -18,6 +18,11 @@ set -e
 cd $HOME && mkdir git-repos && cd git-repos
 git clone https://github.com/kernelci/kernelci-backend-config.git kernelci-backend
 
+# revert to using version of kernelci-backend that works without substantial changes for the release
+cd kernelci-backend
+git checkout 22eea06bce942980c9f0be2e5221e19f3b8fb6db
+cd ..
+
 cp /vagrant/config/secrets-backend.yml kernelci-backend/secrets.yml
 
 # Fixme: Don't let ansible try to create the file in the first place.
