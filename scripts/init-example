@@ -28,6 +28,6 @@ if [[ -x "/newroot/${init}" ]] ; then
 fi
 
 # This will always be run with the exec above commented
-echo "ALERT! $root does not exist. Dropping to a shell!
+echo "ALERT! $root does not exist. Dropping to a shell!"
 PS1='(initramfs) ' exec sh
 
