@@ -54,6 +54,12 @@ sudo DEBIAN_FRONTEND=noninteractive cp mybbb.dat /etc/lava-server/dispatcher-con
 sudo DEBIAN_FRONTEND=noninteractive chown lavaserver.lavaserver /etc/lava-server/dispatcher-config/devices/*
 # lava-tool device-dictionary --update mybbb.dat http://lavauser@localhost:8080/RPC2 bbb01
 
+# Renesas iwg20m
+sudo DEBIAN_FRONTEND=noninteractive cp -v /vagrant/device-types/renesas-iwg20m.jinja2 /etc/lava-server/dispatcher-config/device-types/
+sudo DEBIAN_FRONTEND=noninteractive lava-server manage device-types add renesas-iwg20m
+sudo DEBIAN_FRONTEND=noninteractive lava-server manage devices add --device-type renesas-iwg20m --worker $(hostname --long) iwg20m01
+sudo DEBIAN_FRONTEND=noninteractive cp -v /vagrant/device-dictionary/myiwg20m.jinja2 /etc/lava-server/dispatcher-config/devices/iwg20m01.jinja2
+
 # Change the default shutdown message for kernel v4.4 - comment these lines out if using older kernel with a Shutdown message of "The system is going down for reboot NOW"
 cd /usr/lib/python2.7/dist-packages/lava_dispatcher/pipeline/utils/
 sudo DEBIAN_FRONTEND=noninteractive sed -ie "/SHUTDOWN_MESSAGE/s/The system is going down for reboot NOW/Restarting system/" constants.py
