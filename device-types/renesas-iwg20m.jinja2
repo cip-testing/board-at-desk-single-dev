@@ -1,0 +1,15 @@
+{% extends 'base-uboot.jinja2' %}
+
+{% set console_device = console_device|default('ttySC0') %}
+{% set baud_rate = baud_rate|default(115200) %}
+{% set device_type = "renesas-iwg20m" %}
+{% set bootloader_prompt = bootloader_prompt|default('iWave-G20M >') %}
+{% set kernel_file = kernel_file | default('uImage') %}
+{% set dtb_file = dtb_file | default('r8a7743-iwg20m.dtb') %}
+{% set bootm_kernel_addr = '0x40007fc0' %}
+{% set bootm_ramdisk_addr = '0x41000000' %}
+{% set bootm_dtb_addr = '0x40f00000' %}
+{% set bootz_kernel_addr = '0x40007fc0' %}
+{% set bootz_ramdisk_addr = '0x81600000' %}
+{% set bootz_dtb_addr = '0x40f00000' %}
+{% set uboot_mkimage_arch = 'arm' %}
