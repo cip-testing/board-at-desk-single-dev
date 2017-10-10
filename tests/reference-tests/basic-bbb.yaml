@@ -1,3 +1,5 @@
+# Copyright (C) 2017, Codethink, Ltd., Robert Marshall <robert.marshall@codethink.co.uk>
+# SPDX-License-Identifier:	AGPL-3.0
 metadata:
     format: Lava-Test Test Definition 1.0
     name: beaglebone basic test
