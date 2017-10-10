@@ -1,0 +1,9 @@
+{% extends 'renesas-iwg20m.jinja2' %}
+{% set connection_command = 'telnet localhost 8020' %}
+{% set power_on_command = 'FILL REMOTE POWER COMMAND' %}
+{% set power_off_command = 'FILL REMOTE POWER COMMAND' %}
+{% set hard_reset_command = 'FILL REMOTE POWER COMMAND' %}
+{% set test_delay = 500 %}
+{% set uboot_ipaddr_cmd = 'setenv ipaddr 192.168.1.55' %}
+{% set base_ip_args = 'ip=192.168.1.55' %}
+{% set extra_kernel_args = 'ignore_loglevel vmalloc=384M' %}
