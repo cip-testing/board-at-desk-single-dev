@@ -19,11 +19,8 @@ if [ -f ~/mybbb.dat ] ; then
     exit 1
 fi
 
-#Add repositories - but prefer Jessie packages
-#echo 'APT::Default-Release "jessie";' | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/apt.conf.d/00default-jessie
-# Add Testing repository - main branch
-echo "deb http://http.us.debian.org/debian testing main" | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/sources.list
-echo "deb-src http://http.us.debian.org/debian testing main" | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/sources.list
+# Add backports repository - main branch
+echo "deb http://deb.debian.org/debian stretch-backports main" | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/sources.list
 
 # Add Architectures that you will be building
 sudo DEBIAN_FRONTEND=noninteractive dpkg --add-architecture armel
@@ -42,7 +39,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y install gcc-arm-linux-gnueabi gcc
 # Using expect
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install expect
 # Remove library 
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y remove libgnutls-deb0-28
+# sudo DEBIAN_FRONTEND=noninteractive apt-get -y remove libgnutls-deb0-28
 
 # Install dependencies using pip
 sudo -H DEBIAN_FRONTEND=noninteractive pip install --upgrade pip
