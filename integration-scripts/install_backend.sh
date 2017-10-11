@@ -38,6 +38,7 @@ sed -i 's/hkp:\/\/keyserver.ubuntu.com/hkp:\/\/keyserver.ubuntu.com:80/g' roles/
 ansible-playbook -i hosts site.yml -l local -c local -K -e "@secrets.yml" \
                  -e "@secrets.yml" --skip-tags=backup,firewall,web-server
 
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install net-tools
 # Make sure the backend REST service started to listen  on port 8888 before
 # trying to obtain an admin session token
 while netstat -lnt | awk '$4 ~ /:8888$/ {exit 1}'; do sleep 2; done
