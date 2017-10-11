@@ -19,7 +19,7 @@ vagrant box add $importedBox $box
 mv -f Vagrantfile Vagrantfile-tmp
 vagrant init $importedBox
 mv Vagrantfile-tmp Vagrantfile
-sed -i Vagrantfile -e 's/debian\/jessie64/'"$importedBox"'/'
+sed -i Vagrantfile -e 's/debian\/stretch64/'"$importedBox"'/'
 
 # are any mods necessary?
 set +e
