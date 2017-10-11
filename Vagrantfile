@@ -21,7 +21,7 @@ SCRIPT
 
 Vagrant.configure(2) do |config|
   config.vm.provider :virtualbox do |vbox, override|
-    config.vm.box = "debian/jessie64"
+    config.vm.box = "debian/stretch64"
     
     vbox.customize ["modifyvm", :id, "--vram", "12"]
     vbox.customize ["modifyvm", :id, "--memory", "2048"]
