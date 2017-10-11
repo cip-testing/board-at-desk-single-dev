@@ -17,5 +17,5 @@ PackageComment: <text>The package includes the following libraries:
                 lava 2017-7
                 </text>
 Created: 2017-10-10
-PackageDownloadLocation: git@gitlab.com:cip-project/cip-testing/board-at-desk-single-dev
+PackageDownloadLocation: https://gitlab.com/cip-project/cip-testing/board-at-desk-single-dev
 Creator: Person: Robert Marshall
