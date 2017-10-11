@@ -43,7 +43,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y install gcc-arm-linux-gnueabi gcc
 # Using expect
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install expect
 # Remove library 
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y remove libgnutls-deb0-28
+# sudo DEBIAN_FRONTEND=noninteractive apt-get -y remove libgnutls-deb0-28
 
 # Install dependencies using pip
 sudo -H DEBIAN_FRONTEND=noninteractive pip install --upgrade pip
