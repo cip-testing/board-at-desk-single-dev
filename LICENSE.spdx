@@ -1,0 +1,21 @@
+SPDXVersion: SPDX-2.1
+DataLicense: CC0-1.0
+PackageName: B@D
+DataFormat: SPDXRef-1
+PackageSupplier: Organization: Linux Foundation
+PackageHomePage: https://wiki.linuxfoundation.org/civilinfrastructureplatform/ciptesting
+PackageLicenseDeclared: AGPL-3.0
+PackageCopyrightText: 2017, Codethink Ltd
+PackageSummary: <text>B@D enables the developer to test the CIP kernel on a board connected locally to the user's development machine using kernelci tools.
+                </text>
+PackageComment: <text>The package includes the following libraries:
+                kernelci backend
+                kernelci frontend
+                kernelci build
+                kernelci backend config
+                kernelci-front-end-config
+                lava 2017-7
+                </text>
+Created: 2017-10-10
+PackageDownloadLocation: https://gitlab.com/cip-project/cip-testing/board-at-desk-single-dev
+Creator: Person: Robert Marshall

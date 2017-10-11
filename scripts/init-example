@@ -1,4 +1,6 @@
 #!/bin/sh
+# Copyright (C) 2017, Codethink, Ltd., Robert Marshall <robert.marshall@codethink.co.uk>
+# SPDX-License-Identifier:	Apache-2.0
 
 #Mount things needed by this script
 mount -t proc proc /proc

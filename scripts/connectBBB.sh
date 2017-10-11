@@ -1,5 +1,5 @@
 #!/usr/bin/expect
-# Copyright (C) 2017, Codethink, Ltd., Don Brown <don.brown@codethink.co.uk>
+# Copyright (C) 2017, Codethink, Ltd., Don Brown <codethink@codethink.co.uk>
 # SPDX-License-Identifier:	AGPL-3.0
 # This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, version 3.
 
