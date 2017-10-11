@@ -15,9 +15,6 @@ set -e
 # Stop nginx
 sudo DEBIAN_FRONTEND=noninteractive systemctl stop nginx.service
 
-# Add jessie-backports repository
-#echo "deb http://http.debian.net/debian jessie-backports main" | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/sources.list
-
 # Update the system
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y update
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
