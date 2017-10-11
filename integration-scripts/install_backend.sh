@@ -38,7 +38,9 @@ sed -i 's/hkp:\/\/keyserver.ubuntu.com/hkp:\/\/keyserver.ubuntu.com:80/g' roles/
 ansible-playbook -i hosts site.yml -l local -c local -K -e "@secrets.yml" \
                  -e "@secrets.yml" --skip-tags=backup,firewall,web-server
 
+# with stretch a install of net-tools for netstat is required
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install net-tools
+
 # Make sure the backend REST service started to listen  on port 8888 before
 # trying to obtain an admin session token
 while netstat -lnt | awk '$4 ~ /:8888$/ {exit 1}'; do sleep 2; done
@@ -53,5 +55,8 @@ echo $TOKEN > $HOME/backend-admin-token.txt
 echo "[CIP-KernelCI]" > $HOME/.buildpy.cfg
 echo "token=$TOKEN" >> $HOME/.buildpy.cfg
 echo "url=http://localhost:8888" >> $HOME/.buildpy.cfg
+
+# with stretch an explicit install of bc is required
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install bc
 
 echo "END: install_backend.sh"
