@@ -13,7 +13,7 @@ PackageComment: <text>The package includes the following software:
                 kernelci frontend
                 kernelci build
                 kernelci backend config
-                kernelci-front-end-config
+                kernelci-frontend-config
                 Debian stretch
                 lava 2017-7
                 </text>
