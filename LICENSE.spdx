@@ -8,12 +8,13 @@ PackageLicenseDeclared: AGPL-3.0
 PackageCopyrightText: 2017, Codethink Ltd
 PackageSummary: <text>B@D enables the developer to test the CIP kernel on a board connected locally to the user's development machine using kernelci tools.
                 </text>
-PackageComment: <text>The package includes the following libraries:
+PackageComment: <text>The package includes the following software:
                 kernelci backend
                 kernelci frontend
                 kernelci build
                 kernelci backend config
                 kernelci-front-end-config
+                Debian stretch
                 lava 2017-7
                 </text>
 Created: 2017-10-10
