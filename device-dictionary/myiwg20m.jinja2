@@ -1,5 +1,6 @@
 {% extends 'renesas-iwg20m.jinja2' %}
 {% set connection_command = 'telnet localhost 8020' %}
+{# Ensure to set 'FILL REMOTE POWER COMMAND' appropriately #}
 {% set power_on_command = 'FILL REMOTE POWER COMMAND' %}
 {% set power_off_command = 'FILL REMOTE POWER COMMAND' %}
 {% set hard_reset_command = 'FILL REMOTE POWER COMMAND' %}
