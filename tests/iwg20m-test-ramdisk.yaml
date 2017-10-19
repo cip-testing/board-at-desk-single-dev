@@ -34,9 +34,6 @@ actions:
       compression: gz
       # the bootloader needs a u-boot header on the modified ramdisk
       add-header: u-boot
-    modules:
-      url: http://localhost:8010/iwg20m/modules-iwg20m.tgz
-      compression: gz
     dtb:
       url: http://localhost:8010/iwg20m/r8a7743-iwg20m_q7.dtb
 
