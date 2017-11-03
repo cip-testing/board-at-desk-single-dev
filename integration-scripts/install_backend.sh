@@ -31,6 +31,12 @@ if [ ! -d /etc/sysfs.d/ ]; then
 fi
 sudo touch /etc/sysfs.d/99-thp-defrag.conf
 
+# also create /etc/linaro rather than ansible in order to get permissions correct
+if [ ! -d /etc/linaro/ ]; then
+    sudo mkdir /etc/linaro
+    sudo chmod 750 /etc/linaro
+fi
+
 cd kernelci-backend
 # Use port 80 for apt-key to prevent problems when running behind a web proxy
 sed -i 's/hkp:\/\/keyserver.ubuntu.com/hkp:\/\/keyserver.ubuntu.com:80/g' roles/install-deps/tasks/install-mongodb.yml
