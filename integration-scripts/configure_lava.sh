@@ -44,9 +44,6 @@ cd ~
 echo "{% extends 'beaglebone-black.jinja2' %}" > mybbb.dat
 #echo "{% set connection_command = 'telnet localhost 8020' %}" >> mybbb.dat
 echo "{% set connection_command = '/vagrant/scripts/connectBBB.sh localhost 8020 root lavauser123' %}"  >> mybbb.dat
-echo "{% set poweron_command = 'pduclient --daemon localhost --hostname 127.0.0.1 --port 3 --command on' %}" >> mybbb.dat
-echo "{% set poweroff_command = 'pduclient --daemon localhost --hostname 127.0.0.1 --port 3 --command off' %}" >> mybbb.dat
-echo "{% set reboot_command = 'pduclient --daemon localhost --hostname 127.0.0.1 --port 3 --command reboot' %}" >> mybbb.dat
 
 # Import the Beaglebone Black Device Dictionary file into the LAVA2 Server
 # needs authentication token setting up
