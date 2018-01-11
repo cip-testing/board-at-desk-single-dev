@@ -21,7 +21,7 @@ git clone https://github.com/kernelci/kernelci-frontend-config.git kernelci-fron
 
 # revert to using version of kernelci-frontend that works without substantial changes for the release
 cd kernelci-frontend
-git checkout 71dbe698c9353f01cf63baa318cfb126d1afb207
+# git checkout 71dbe698c9353f01cf63baa318cfb126d1afb207
 cd ..
 
 
@@ -31,6 +31,7 @@ cat /vagrant/config/secrets-frontend.yml | sed -e "s/TOKEN/${TOKEN}/" \
 
 cd kernelci-frontend
 sed -i group_vars/all -e 's/^role: production/role: atdesk/'
+sed -i group_vars/all -e 's/hostname: kernelci-backend/hostname: localhost/'
 
 set +e
 ansible-playbook -i hosts site.yml -l local -c local -K -D \
@@ -47,5 +48,9 @@ sudo sed -i /srv/kernelci-frontend/app/dashboard/default_settings.py -e 's/^SECR
 # set up build area
 sudo mkdir -p /var/www/images
 sudo chown -R www-data.www-data /var/www
+
+# really wants sysctl'ing
+# /vagrant/scripts/start_webserver.sh &
+# and the instructions say a reboot is necessary!
 
 echo "END: install_frontend.sh"
