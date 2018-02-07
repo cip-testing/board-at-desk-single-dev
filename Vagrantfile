@@ -41,7 +41,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 8010, host: 8010
   # Forward port 5000 for the KernelCI Frontend Web Server
   config.vm.network :forwarded_port, guest: 5000, host: 5000
-  # Forward port 80 for the http Lava Frontend Web Server
+  # Forward port 8080 for the http Lava Frontend Web Server
   config.vm.network :forwarded_port, guest: 8080, host: 8080
   # Forward port 443 for the https Lava Frontend Web Server
   config.vm.network :forwarded_port, guest: 443, host: 4443
