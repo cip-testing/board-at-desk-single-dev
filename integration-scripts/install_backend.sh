@@ -14,6 +14,7 @@
 echo "START: install_backend.sh"
 
 set -e
+# test whether the tmphosts marker file is already created
 if [ -f ~/git-repos/kernelci-backend/tmphosts ] ; then
 # install backend partially done, continuing..
     # Make sure the backend REST service started to listen  on port 8888 before
@@ -35,6 +36,7 @@ if [ -f ~/git-repos/kernelci-backend/tmphosts ] ; then
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y install bc
     rm ~/git-repos/kernelci-backend/tmphosts
     echo "END: install_backend.sh"
+    # move onto the next provisioning stage
     exit 0
 
 fi
@@ -87,36 +89,6 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y install net-tools
 sudo sed -i 's/^[ ]*ssl/    # ssl/' /etc/nginx/sites-enabled/storage.kernelci.org.conf
 sudo sed -i 's/resolver False/# resolver False/' /etc/nginx/sites-enabled/storage.kernelci.org.conf
 
-if false
-then
-   # leave in for the moment (but disabled!)
-   sudo DEBIAN_FRONTEND=noninteractive systemctl stop nginx.service
-   #sudo DEBIAN_FRONTEND=noninteractive systemctl reload nginx.service
-   sudo DEBIAN_FRONTEND=noninteractive systemctl start nginx.service
-   # Make sure the backend REST service started to listen  on port 8888 before
-   # trying to obtain an admin session token
-   echo waiting for nginx
-   while netstat -lnt | awk '$4 ~ /:8888$/ {exit 1}'; do sleep 2; done
-   echo finished waiting for nginx
-   
-   # Obtain the session token with admin privileges.
-   MASTER_KEY=`cat /vagrant/config/secrets-backend.yml | grep master_key | \
-                              awk '{print $2;}'`
-   TOKEN=`python /vagrant/scripts/get_admin_token.py ${MASTER_KEY}`
-   echo $TOKEN > $HOME/backend-admin-token.txt
-   
-   # Create a configuration file for the build script
-   echo "[CIP-KernelCI]" > $HOME/.buildpy.cfg
-   echo "token=$TOKEN" >> $HOME/.buildpy.cfg
-   echo "url=http://localhost:8888" >> $HOME/.buildpy.cfg
-   
-   # with stretch an explicit install of bc is required
-   sudo DEBIAN_FRONTEND=noninteractive apt-get -y install bc
-   rm ~/git-repos/kernelci-backend/tmphosts
-   echo "END: install_backend.sh"
-   
-   exit 0
-fi
 
 echo now run 'vagrant halt; vagrant up; vagrant provision; '
 echo 'to complete b@d provisioning'
