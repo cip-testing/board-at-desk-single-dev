@@ -19,11 +19,6 @@ set -e
 cd $HOME/git-repos
 git clone https://github.com/kernelci/kernelci-frontend-config.git kernelci-frontend
 
-# revert to using version of kernelci-frontend that works without substantial changes for the release
-cd kernelci-frontend
-# git checkout 71dbe698c9353f01cf63baa318cfb126d1afb207
-cd ..
-
 
 TOKEN=`cat $HOME/backend-admin-token.txt`
 cat /vagrant/config/secrets-frontend.yml | sed -e "s/TOKEN/${TOKEN}/" \
@@ -49,7 +44,6 @@ sudo sed -i /srv/kernelci-frontend/app/dashboard/default_settings.py -e 's/^SECR
 sudo mkdir -p /var/www/images
 sudo chown -R www-data.www-data /var/www
 
-# really wants sysctl'ing
 # /vagrant/scripts/start_webserver.sh &
 # and the instructions say a reboot is necessary!
 
