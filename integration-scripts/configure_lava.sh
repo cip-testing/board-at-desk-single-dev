@@ -1,4 +1,5 @@
 #! /bin/sh
+# Copyright (C) 2018, Codethink, Ltd., Robert Marshall <robert.marshall@codethink.co.uk>
 # Copyright (C) 2017, Codethink, Ltd., Don Brown <codethink@codethink.co.uk>
 # SPDX-License-Identifier:	AGPL-3.0
 # This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, version 3.
@@ -43,7 +44,7 @@ sudo DEBIAN_FRONTEND=noninteractive lava-server manage devices add --device-type
 cd ~
 echo "{% extends 'beaglebone-black.jinja2' %}" > mybbb.dat
 #echo "{% set connection_command = 'telnet localhost 8020' %}" >> mybbb.dat
-echo "{% set connection_command = '/vagrant/scripts/connectBBB.sh localhost 8020 root lavauser123' %}"  >> mybbb.dat
+echo "{% set connection_command = '/vagrant/scripts/connectBBB.sh 192.168.22.1 8020 root lavauser123' %}"  >> mybbb.dat
 
 # Import the Beaglebone Black Device Dictionary file into the LAVA2 Server
 # needs authentication token setting up

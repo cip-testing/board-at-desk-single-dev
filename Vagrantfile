@@ -1,5 +1,5 @@
-# Copyright (C) 2016-2017, Siemens AG, Wolfgang Mauerer <wolfgang.mauerer@siemens.com>
-# Copyright (C) 2016-2017, Codethink, Ltd., Robert Marshall <robert.marshall@codethink.co.uk>
+# Copyright (C) 2016-2018, Siemens AG, Wolfgang Mauerer <wolfgang.mauerer@siemens.com>
+# Copyright (C) 2016-2018, Codethink, Ltd., Robert Marshall <robert.marshall@codethink.co.uk>
 # SPDX-License-Identifier:	AGPL-3.0
 # This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, version 3.
 
@@ -47,7 +47,9 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 443, host: 4443
   # Configure network accessibility for tftp server
   config.vm.network "public_network", use_dhcp_assigned_default_route: true
-
+  # route for connections to the board - change this if you're using that address!
+  config.vm.network "private_network", ip: "192.168.22.10"
+  
   config.vm.provision "shell" do |s|
     s.privileged = false
     s.inline = $build
