@@ -61,11 +61,20 @@ echo "storage_certname: localhost" >> group_vars/all
 sed -i group_vars/all -e 's/hostname: kernelci-backend/hostname: localhost/'
 
 cat > tmphosts  <<EOF
-#this machine will be managed directly via root
+[dev]
+# this machine will be managed directly via root
 localhost ansible_ssh_user=root
+[rec]
+# this machine will be managed via the user admin becoming root via "su"
+localhost ansible_ssh_user=admin become_method=su
+[prod]
+# this machine will be managed via the user admin using sudo
+localhost ansible_ssh_user=admin become_method=sudo
 EOF
 
-sudo DEBIAN_FRONTEND=noninteractive bash -c "cat tmphosts >> /etc/hosts"
+sudo mkdir -p /etc/ansible
+sudo DEBIAN_FRONTEND=noninteractive bash -c "cat tmphosts >> /etc/ansible/hosts"
+ 
 
 set +e
 ansible-playbook -i hosts site.yml -l local -c local -K -e "@secrets.yml" \
