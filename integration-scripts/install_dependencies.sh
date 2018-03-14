@@ -18,7 +18,10 @@ if [ -f ~/mybbb.dat ] ; then
     echo 'KernelCI already configured remove ~/mybbb.dat to force configuration'
     exit 1
 fi
-
+if [ -f ~/git-repos/kernelci-backend/tmphosts ] ; then
+    echo continuing kernelci-backend provisioning
+    exit 0
+fi
 # Add backports repository - main branch
 echo "deb http://deb.debian.org/debian stretch-backports main" | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/sources.list
 
