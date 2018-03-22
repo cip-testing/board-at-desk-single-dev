@@ -10,7 +10,7 @@ device_type: beaglebone-black
 
 # NFS fails on panda and arndale.
 
-job_name: local test of ramdisk test on bbb
+job_name: local test of ramdisk test on bbb using /TREE/BRANCH/TAG/arm/omap2plus_defconfig/zImage
 timeouts:
   job:
     minutes: 10
