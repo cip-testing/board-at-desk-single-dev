@@ -32,8 +32,8 @@ sudo DEBIAN_FRONTEND=noninteractive usermod -a -G libvirt,kvm vagrant
 # Change line in /etc/apache2/ports.conf to avoid port 80 conflict
 sudo sed -ie '/Listen/s/80/8080/' /etc/apache2/ports.conf
 
-# Disable CSRF cookies
-sudo sed -ie 's/"MOUNT_POINT"/"CSRF_COOKIE_SECURE": false,\n    "SESSION_COOKIE_SECURE": false,\n    "MOUNT_POINT"/' /etc/lava-server/settings.conf
+# Disable CSRF cookies and provide working link to LAVA source
+sudo sed -ie 's/"MOUNT_POINT"/"CSRF_COOKIE_SECURE": false,\n    "SESSION_COOKIE_SECURE": false,\n     "BRANDING_SOURCE_URL": "https:\/\/git.linaro.org\/?q=lava-",\n     "MOUNT_POINT"/' /etc/lava-server/settings.conf
 
 # Change line in /etc/apache2/sites-available/lava-server.conf to avoid port 80 conflict
 sudo sed -ie '/\<VirtualHost/s/\:80/\:8080/' /etc/apache2/sites-available/lava-server.conf
