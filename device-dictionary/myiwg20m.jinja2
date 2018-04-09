@@ -1,0 +1,8 @@
+{% extends 'renesas-iwg20m.jinja2' %}
+{% set connection_command = 'telnet 192.168.22.1  8020' %}
+{# Ensure to set 'FILL REMOTE POWER COMMAND' appropriately #}
+{% set power_on_command = 'FILL REMOTE POWER COMMAND' %}
+{% set power_off_command = 'FILL REMOTE POWER COMMAND' %}
+{% set hard_reset_command = 'FILL REMOTE POWER COMMAND' %}
+{% set test_delay = 500 %}
+{% set extra_kernel_args = 'ignore_loglevel vmalloc=384M' %}
