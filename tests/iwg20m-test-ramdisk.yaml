@@ -7,7 +7,7 @@
 # You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 device_type: renesas-iwg20m
-job_name: iwg20m Kernel version test using /TREE/BRANCH/TAG/arm/omap2plus_defconfig/zImage
+job_name: iwg20m Kernel version test using /TREE/BRANCH/TAG/arm/shmobile_defconfig/zImage
 
 timeouts:
   job:
@@ -26,6 +26,7 @@ actions:
     timeout:
       minutes: 5
     to: tftp
+    # despite this being a Debian initramfs, it is not a complete Debian rootfs, so use oe compatibility
     os: oe
     kernel:
       url: http://localhost:8010/TREE/BRANCH/TAG/arm/shmobile_defconfig/zImage
