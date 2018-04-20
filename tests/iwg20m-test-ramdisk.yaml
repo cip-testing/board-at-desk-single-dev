@@ -7,7 +7,8 @@
 # You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 device_type: renesas-iwg20m
-job_name: Kernel version test
+job_name: iwg20m Kernel version test using /TREE/BRANCH/TAG/arm/omap2plus_defconfig/zImage
+
 timeouts:
   job:
     minutes: 10
@@ -27,23 +28,22 @@ actions:
     to: tftp
     os: oe
     kernel:
-      url: http://localhost:8010/iwg20m/uImage
-      type: uImage
+      url: http://localhost:8010/TREE/BRANCH/TAG/arm/shmobile_defconfig/zImage
+      type: zimage
     ramdisk:
-      url: http://localhost:8010/iwg20m/core-image-minimal-iwg20m.cpio.gz
+      url: http://localhost:8010/initramfs/initramfs.cpio.gz
       compression: gz
       # the bootloader needs a u-boot header on the modified ramdisk
       add-header: u-boot
     dtb:
-      url: http://localhost:8010/iwg20m/r8a7743-iwg20m_q7.dtb
-
+      url: http://localhost:8010/TREE/BRANCH/TAG/arm/shmobile_defconfig/dtbs/r8a7743-iwg20d-q7.dtb
 # BOOT_BLOCK
 - boot:
     auto_login:
       login_prompt: '\(none\) login: '
       username: root
     prompts:
-      - 'cip# '
+      - '\(initramfs\)'
     method: u-boot
     commands: ramdisk
     type: uimage
@@ -71,3 +71,4 @@ actions:
       from: inline
       name: kernel-version-inline
       path: inline/kernel-version-basic.yaml
+
