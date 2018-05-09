@@ -62,9 +62,4 @@ cp -v /vagrant/device-dictionary/myiwg20m.jinja2 ~/myrenesas.dat
 sudo DEBIAN_FRONTEND=noninteractive chown lavaserver.lavaserver /etc/lava-server/dispatcher-config/devices/*
 sudo DEBIAN_FRONTEND=noninteractive chown lavaserver.lavaserver /etc/lava-server/dispatcher-config/device-types/*
 
-# Change the default shutdown message for kernel v4.4 - comment these lines out if using older kernel with a Shutdown message of "The system is going down for reboot NOW"
-cd /usr/lib/python2.7/dist-packages/lava_dispatcher/pipeline/utils/
-sudo DEBIAN_FRONTEND=noninteractive sed -ie "/SHUTDOWN_MESSAGE/s/The system is going down for reboot NOW/Restarting system/" constants.py
-cd ~
-
 echo "END: configure_lava.sh"
