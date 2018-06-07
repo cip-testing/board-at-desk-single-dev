@@ -24,7 +24,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postgresql tftp
 
 # Install qemu, KVM & LAVA
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install qemu-kvm libvirt-clients libvirt-daemon libvirt-daemon-system
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y install lava -t stretch-backports
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install lava=2018.4-1~bpo9+1 -t stretch-backports
 
 # Add the vagrant user to the libvirtd and kvm groups
 sudo DEBIAN_FRONTEND=noninteractive usermod -a -G libvirt,kvm vagrant
