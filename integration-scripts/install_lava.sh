@@ -15,12 +15,14 @@ set -e
 # Stop nginx
 sudo DEBIAN_FRONTEND=noninteractive systemctl stop nginx.service
 
-# Update the system
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y update
+# retrieve 2018.4 of LAVA from here
+echo "deb     http://snapshot.debian.org/archive/debian/20180526T153644Z/ stretch-backports main " | sudo DEBIAN_FRONTEND=noninteractive tee -a /etc/apt/sources.list
+sudo DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Check-Valid-Until=false -y update
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 
 # Install postgresql & tftp
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postgresql tftp
+
 
 # Install qemu, KVM & LAVA
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install qemu-kvm libvirt-clients libvirt-daemon libvirt-daemon-system
