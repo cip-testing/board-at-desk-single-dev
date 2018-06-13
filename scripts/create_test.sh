@@ -29,4 +29,12 @@ sed -i $OUP -e 's/TAG/'"$TAG"'/'
 sed -i $OUP -e 's/BRANCH/'"$BRANCH"'/' 
 
 
-echo now run lava-tool submit-job http://lavauser@localhost:8080/RPC2 $OUP
+# assumes that lavauser is being used (as specified in the wiki)
+AUTH=$(lava-tool auth-list | grep -c lavauser)
+if [ $AUTH -eq 1 ]
+then
+   echo now run lava-tool submit-job http://lavauser@localhost:8080/RPC2 $OUP
+else
+   echo move $OUP to /etc/lava-server/dispatcher-config/health-checks/ naming it device-type.yaml
+   echo if you want to use lava-tool you need to add an authentication token
+fi
