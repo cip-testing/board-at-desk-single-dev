@@ -62,11 +62,22 @@ actions:
 
 # TEST_BLOCK
 - test:
-    # defines the tests to be run once the health check passes
     timeout:
-      minutes: 5
+      minutes: 2
     definitions:
-    - repository: git://git.linaro.org/qa/test-definitions.git
-      from: git
-      path: common/dt-selftests.yaml
-      name: smoke-tests
+    - repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: kernel-version-basic
+          version: "1.0"
+          description: "check kernel version"
+          os:
+            - oe
+          scope:
+            - functional
+        run:
+          steps:
+            - lava-test-case uname --shell uname -a
+      from: inline
+      name: kernel-version-inline
+      path: inline/kernel-version-basic.yaml
