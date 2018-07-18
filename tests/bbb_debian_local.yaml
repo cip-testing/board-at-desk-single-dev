@@ -1,4 +1,4 @@
-# Copyright (C) 2017, Codethink, Ltd., Robert Marshall <robert.marshall@codethink.co.uk>
+# Copyright (C) 2018, Codethink, Ltd., Robert Marshall <robert.marshall@codethink.co.uk>
 # SPDX-License-Identifier:	AGPL-3.0
 # This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, version 3.
 
@@ -10,7 +10,7 @@ device_type: beaglebone-black
 
 # NFS fails on panda and arndale.
 
-job_name: local test of ramdisk test on bbb using /TREE/BRANCH/TAG/arm/omap2plus_defconfig/zImage
+job_name: test of bbb using /TREE/BRANCH/TAG/arm/omap2plus_defconfig/zImage
 timeouts:
   job:
     minutes: 10
@@ -62,11 +62,22 @@ actions:
 
 # TEST_BLOCK
 - test:
-    # defines the tests to be run once the health check passes
     timeout:
-      minutes: 5
+      minutes: 2
     definitions:
-    - repository: git://git.linaro.org/qa/test-definitions.git
-      from: git
-      path: common/dt-selftests.yaml
-      name: smoke-tests
+    - repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: kernel-version-basic
+          version: "1.0"
+          description: "check kernel version"
+          os:
+            - oe
+          scope:
+            - functional
+        run:
+          steps:
+            - lava-test-case uname --shell uname -a
+      from: inline
+      name: kernel-version-inline
+      path: inline/kernel-version-basic.yaml
