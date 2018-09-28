@@ -47,7 +47,6 @@ actions:
       - '\(initramfs\)'
     method: u-boot
     commands: ramdisk
-    type: uimage
     timeout:
       minutes: 5
 
