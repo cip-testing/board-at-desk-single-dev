@@ -1,0 +1,9 @@
+* Mostly in issues
+  
+* Thoughts on docker
+
+* Populate script
+  There's a script at https://gitlab.com/rajm/board-at-desk-single-dev/blob/boxPopulate/scripts/populate.sh
+  which I use for the fortnightly provision check. It carries out the tasks on the wiki builds a BBB kernel and initramfs
+  and sets off a health check on the BBB and QEMU. You need to visit http://localhost:8080 to check whether it has worked,
+  as it just leaves things running. It could be used as a basis for other build scripts.
