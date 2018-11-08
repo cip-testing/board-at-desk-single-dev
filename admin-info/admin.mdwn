@@ -1,9 +1,56 @@
+* wiki link
+  but it's in README.md 
+  https://wiki.linuxfoundation.org/civilinfrastructureplatform/ciptestingboardatdesksingledevfeaturepage
+
 * Mostly in issues
+
+  Highlight some
   
 * Thoughts on docker
 
+  See the appropriate tickets for the current state #192, #197 and #198
+
 * Populate script
   There's a script at https://gitlab.com/rajm/board-at-desk-single-dev/blob/boxPopulate/scripts/populate.sh
-  which I use for the fortnightly provision check. It carries out the tasks on the wiki builds a BBB kernel and initramfs
+  which I use for the fortnightly provision check (#149). It carries out the tasks on the wiki downloading and building a BBB kernel and initramfs
   and sets off a health check on the BBB and QEMU. You need to visit http://localhost:8080 to check whether it has worked,
-  as it just leaves things running. It could be used as a basis for other build scripts.
+  as it just leaves the 2 health checks running. It could be used as a basis for other build scripts. Run it within the vm.
+
+* Notifications
+  - IRC pinging doesn't currently work on freenode because of spam prevention measures.
+  - Agustín has the authorisation details for srv_ln001@codethink.co.uk which was used to
+    email cip-testing-results.
+
+* Box creation script
+
+Instructions for creating and uploading box and associated files
+
+Clone a new version of the repos and step through the setup on the wiki, cloning the linux-cip repos running a build. Configure the notification email smtp settings.
+
+Run the webserver and check that the successful build is visible
+Run a health check on a Beaglebone Black verify that it completes successfully - including a notification to the cip-testing-results list (or preferably to the box builder instead?).
+Remove any local email settings from the box.
+Remove any valid IRC handle /email address from the health checks notification.
+On the VM, edit mybbb.dat to reset IP address to the default 'localhost' (thus matching the wiki instructions) - and add it in that state to the data dictionary. (to avoid a surprise for the user?)
+
+sudo apt-get clean -y
+sudo apt-get autoclean -y
+cd git-repos/linux-cip
+make clean
+git clean -dfx
+cd ~/work/busybox-1.26.2/
+make clean
+
+sudo dd if=/dev/zero of=/EMPTY bs=1M
+sudo rm /EMPTY
+Will also need to clear up ~/work for the initramfs build, and then on the host (in the git board-at-desk-single-dev directory)
+
+for the release
+vagrant package --output ../cip_board_at_desk_v0.9.n.box
+for betas:
+vagrant package --output ../cip_board_at_desk_v0.9.n.beta_YYYY_MM_DD.box 
+(replacing YYYY-MM-DD with the box creation date aka ../cip_board_at_desk_v0.9.date +%Y_%m_%d.box as we will be losing the beta)
+
+We will also need to generate a hash of the release and the source code and upload it all to the download area.
+
+*Finally, * so that we can estimate for the release, we need an accurate record of how long the process takes including the complete upload to all required data to the website.
